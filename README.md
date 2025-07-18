@@ -14,7 +14,7 @@ Todo uses a variety of tools, including:
 - HTML
 - CSS
 
-![Profile Page](./images/README%20Preview%201.png)
+![Profile Page](/images/preview/README%20Preview%201.png)
 
 ## Deployment
 

@@ -9,6 +9,7 @@ const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = addTodoPopup.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
+const counterText = document.querySelector(".counter__text");
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
@@ -18,8 +19,16 @@ const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
 
+const updateCounter = () => {
+  const allTodos = todosList.querySelectorAll(".todo");
+  const completedTodos = todosList.querySelectorAll(".todo__completed:checked");
+  const totalTodos = allTodos.length;
+  const completedCount = completedTodos.length;
+  counterText.textContent = `Showing ${completedCount} out of ${totalTodos} completed`;
+};
+
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", updateCounter);
   const todoElement = todo.getView();
   return todoElement;
 };
@@ -44,6 +53,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   const values = { name, date, id };
   const todo = generateTodo(values);
   todosList.append(todo);
+  updateCounter();
   closeModal(addTodoPopup);
   newTodoValidator.resetValidation();
 });
@@ -52,6 +62,8 @@ initialTodos.forEach((item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 });
+
+updateCounter();
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
