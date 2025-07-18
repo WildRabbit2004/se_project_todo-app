@@ -10,9 +10,9 @@ With Todo, you can not only pin tasks that need done, but you can even add a due
 
 Todo uses a variety of tools, including:
 
--Modular Javascript
--HTML
--CSS
+- Modular Javascript
+- HTML
+- CSS
 
 ![Profile Page](./images/README%20Preview%201.png)
 
