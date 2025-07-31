@@ -1,19 +1,27 @@
 class Todo {
-  constructor(data, selector, updateCounter) {
+  constructor(data, selector, todoCounter) {
     this._data = data;
     this._templateElement = document.querySelector(selector);
-    this._updateCounter = updateCounter;
+    this._todoCounter = todoCounter;
   }
 
   _setEventListeners() {
     this._todoDeleteBtn.addEventListener("click", () => {
       this._todoElement.remove();
-      this._updateCounter();
+      this._todoCounter.updateTotal(false);
+      if (this._data.completed) {
+        this._todoCounter.updateCompleted(false);
+      }
     });
 
     this._todoCheckboxEl.addEventListener("change", () => {
+      const wasCompleted = this._data.completed;
       this._data.completed = !this._data.completed;
-      this._updateCounter();
+      if (this._data.completed) {
+        this._todoCounter.updateCompleted(true);
+      } else {
+        this._todoCounter.updateCompleted(false);
+      }
     });
   }
 
