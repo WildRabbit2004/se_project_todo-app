@@ -15,7 +15,6 @@ class Todo {
     });
 
     this._todoCheckboxEl.addEventListener("change", () => {
-      const wasCompleted = this._data.completed;
       this._data.completed = !this._data.completed;
       if (this._data.completed) {
         this._todoCounter.updateCompleted(true);

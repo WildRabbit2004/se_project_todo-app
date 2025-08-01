@@ -2,6 +2,7 @@ class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
     this._popupCloseBtn = this._popupElement.querySelector(".popup__close");
+    this._popupOpenBtn = document.querySelector(".button_action_add");
   }
 
   open() {
@@ -23,6 +24,10 @@ class Popup {
   setEventListeners() {
     this._popupCloseBtn.addEventListener("click", () => {
       this.close();
+    });
+
+    this._popupOpenBtn.addEventListener("click", () => {
+      this.open();
     });
 
     this._popupElement.addEventListener("click", (evt) => {
